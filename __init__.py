@@ -1,7 +1,7 @@
-# Copyright (c) Microsoft Corporation. All rights reserved.
-# Licensed under the MIT License. See LICENSE in the project root
-# for license information.
-
-# "force_pydevd" must be imported first to ensure (via side effects)
-# that the debugpy-vendored copy of pydevd gets used.
-import debugpy._vendored.force_pydevd  # noqa
+import warnings
+with warnings.catch_warnings():
+    try:
+        __import__('pkg_resources').declare_namespace(__name__)
+    except ImportError:
+        import pkgutil
+        __path__ = pkgutil.extend_path(__path__, __name__)
